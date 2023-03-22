@@ -1,10 +1,7 @@
-import styles from './Leaderboards.module.css'
+import styles from './Leaderboards.module.css';
 
 function Leaderboards() {
-    return (
-        <div className={styles.Leaderboards}>
-        </div>
-    )
+	return <div className={styles.Leaderboards}></div>;
 }
 
-export default Leaderboards
+export default Leaderboards;
