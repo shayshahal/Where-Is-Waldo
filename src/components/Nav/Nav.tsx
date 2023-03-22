@@ -14,7 +14,7 @@ function Nav() {
 				☰
 			</button>
 			{isShowing && (
-				<div>
+				<div data-testid='nav-links'>
 					<NavLink to='/'>Game</NavLink>
 					<NavLink to='/Leaderboards'>Leaderboards</NavLink>
 					<NavLink to='/Info'>Info</NavLink>
