@@ -1,0 +1,27 @@
+----------------app----------------------------------------------
+props: none
+state: none
+
+------------------------Game--------------------- route
+props: none
+state: gameState, time, found
+
+-----------score--------------
+props: time, found, toBeFound
+state: none
+
+-----------Tag-------------
+props: coordinate
+state: name
+
+----------------nav-----------------------------
+props: none
+state: isShowing
+
+----------------leaderboards------------------- route
+props: none
+state: none
+
+----------------info-------------------------- route
+props: none
+state: none
