@@ -1,7 +1,27 @@
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './Nav.module.css';
 
 function Nav() {
-	return <div className={styles.Nav}></div>;
+	const [isShowing, setIsShowing] = useState(false);
+	return (
+		<nav className={styles.Nav}>
+			<button
+				onClick={() => {
+					setIsShowing((prev) => !prev);
+				}}
+			>
+				☰
+			</button>
+			{isShowing && (
+				<div>
+					<NavLink to='/'>Game</NavLink>
+					<NavLink to='/Leaderboards'>Leaderboards</NavLink>
+					<NavLink to='/Info'>Info</NavLink>
+				</div>
+			)}
+		</nav>
+	);
 }
 
 export default Nav;

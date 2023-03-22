@@ -1,33 +1,46 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, test } from 'vitest';
 import Nav from './Nav';
 
 describe('Nav tests', () => {
 	test('should be collapsed on mount', () => {
-		render(<Nav />);
+		render(
+			<MemoryRouter>
+				<Nav />
+			</MemoryRouter>
+		);
 
 		expect(screen.getByRole('navigation')).toContainElement(
 			screen.getByRole('button')
 		);
-		expect(screen.queryByRole('link', { name: 'Game' })).toHaveLength(0);
+		expect(screen.queryByTestId('nav-links')).not.toBeInTheDocument();
 	});
 	test('should be expanded on click', async () => {
+		render(
+			<MemoryRouter>
+				<Nav />
+			</MemoryRouter>
+		);
 		const user = userEvent.setup();
 
-		await user.click(screen.getByRole('Button'));
+		await user.click(screen.getByRole('button'));
 
-		expect(screen.getByRole('navigation').childElementCount).toBe(4);
-		expect(screen.queryByRole('link', { name: 'Game' })).toHaveLength(1);
+		expect(screen.queryByTestId('nav-links')).toBeInTheDocument();
 	});
 
 	test('should be collapsed after two click', async () => {
+		render(
+			<MemoryRouter>
+				<Nav />
+			</MemoryRouter>
+		);
 		const user = userEvent.setup();
 
-		await user.click(screen.getByRole('Button'));
-		await user.click(screen.getByRole('Button'));
+		await user.click(screen.getByRole('button'));
+		await user.click(screen.getByRole('button'));
 
-		expect(screen.getByRole('navigation').childElementCount).toBe(1);
-		expect(screen.queryByRole('link', { name: 'Game' })).toHaveLength(0);
+		expect(screen.queryByTestId('nav-links')).not.toBeInTheDocument();
 	});
 });
