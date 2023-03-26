@@ -20,16 +20,17 @@ function Game() {
 	return (
 		<div className={styles.Game}>
 			{gameState === 'inactive' ? (
-				<div>
-					<h1>Where's Pandaman?</h1>
+				<div className={styles.inactive}>
+					<h1 className={styles.title}>Where's<br/> Pandaman?</h1>
 					<button
 						data-testid='easy-button'
+						className={styles.easy}
 						onClick={() => {
 							setGameState('easy');
 							startTimer();
 						}}
 					>
-						play
+						play →
 					</button>
 				</div>
 			) : (
