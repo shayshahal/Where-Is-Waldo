@@ -6,18 +6,19 @@ function Nav() {
 	const [isShowing, setIsShowing] = useState(false);
 	return (
 		<nav className={styles.Nav}>
-			<button
+			{<button
 				onClick={() => {
 					setIsShowing((prev) => !prev);
 				}}
+				className={styles.button} 
 			>
 				☰
-			</button>
+			</button>}
 			{isShowing && (
-				<div data-testid='nav-links'>
-					<NavLink to='/'>Game</NavLink>
-					<NavLink to='/Leaderboards'>Leaderboards</NavLink>
-					<NavLink to='/Info'>Info</NavLink>
+				<div data-testid='nav-links' className={styles.navLinks} >
+					<NavLink className={styles.navLink} to='/'>Game</NavLink>
+					<NavLink className={styles.navLink} to='/Leaderboards'>Leaderboards</NavLink>
+					<NavLink className={styles.navLink} to='/Info'>Info</NavLink>
 				</div>
 			)}
 		</nav>
