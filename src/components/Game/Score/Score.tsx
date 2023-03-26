@@ -1,10 +1,18 @@
-import styles from './Score.module.css'
+import styles from './Score.module.css';
 
-function Score() {
-    return (
-        <div className={styles.Score}>
-        </div>
-    )
+interface scoreProps {
+	time: number;
+	found: number;
+	toBeFound: number;
 }
 
-export default Score
+function Score({ time, found, toBeFound }: scoreProps) {
+
+	return (
+		<div className={styles.Score}>
+			<span data-testid='time'>{time}</span> <span>{found + '/' + toBeFound}</span>
+		</div>
+	);
+}
+
+export default Score;
