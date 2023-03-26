@@ -6,6 +6,10 @@ state: none
 props: none
 state: gameState, time, found
 
+----------------GameMap--------------------
+props: onFound
+state: position
+
 -----------score--------------
 props: time, found, toBeFound
 state: none
