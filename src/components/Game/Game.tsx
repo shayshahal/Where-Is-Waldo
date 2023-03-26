@@ -19,7 +19,6 @@ function Game() {
 
 	return (
 		<div className={styles.Game}>
-			<div data-testid='test'>{gameTime}</div>
 			{gameState === 'inactive' ? (
 				<div>
 					<h1>Where's Pandaman?</h1>

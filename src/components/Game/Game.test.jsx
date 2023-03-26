@@ -1,7 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import { vi } from 'vitest';
 
 import Game from './Game';
 
@@ -49,6 +48,7 @@ describe('Game tests', () => {
 	});
 
 	test.todo('should increment score timer by 1 a second after game start', async () => {
+		vi.useFakeTimers();
 		const user = userEvent.setup();
 		render(
 			<MemoryRouter>
@@ -56,15 +56,7 @@ describe('Game tests', () => {
 			</MemoryRouter>
 		);
 
-
 		await user.click(screen.getByTestId('easy-button'));
-		act(()=>{
-			vi.useFakeTimers();
-			vi.advanceTimersByTime(2000);
-		})
-
-
-
 
 		expect(screen.getByTestId('time')).toHaveTextContent('2');
 	});
