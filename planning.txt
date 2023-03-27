@@ -1,14 +1,14 @@
 ----------------app----------------------------------------------
 props: none
-state: isGameActive
+state: none
 
 ------------------------Home--------------------- route
 props: none
-state: gameActive
+state: gameChoice
 
 ----------------Game--------------------
 props: onFound, image, time, found
-state: tags
+state: tags, isPaused
 
 -----------score--------------
 props: time, found, toBeFound
