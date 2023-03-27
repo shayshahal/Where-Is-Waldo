@@ -1,0 +1,63 @@
+.Home {
+	display: grid;
+	grid-template-areas:
+		'title image'
+		'edition image'
+		'desc image'
+		'buttons image';
+	grid-template-columns: 4fr 4fr;
+	grid-auto-rows: min-content auto 1fr min-content;
+	padding-left: 2em;
+}
+.title {
+	font-size: 10rem;
+	grid-area: title;
+}
+.edition {
+	font-size: 5rem;
+	grid-area: edition;
+}
+.buttons {
+	display: flex;
+	gap: 1em;
+	padding: 1em 0em;
+	grid-area: buttons;
+}
+.radio {
+	appearance: none;
+}
+.radioLabel {
+	cursor: pointer;
+	background-color: black;
+	color: white;
+	font-size: 2rem;
+	padding: 1em;
+	align-self: center;
+}
+.description {
+	grid-area: desc;
+	font-size: 2rem;
+}
+.button {
+	grid-area: play;
+	font-size: 2rem;
+	border: 1px solid black;
+	border-radius: 2rem;
+	background-color: transparent;
+	align-self: center;
+	padding: 0.5em 5em;
+}
+.imageContainer {
+	grid-area: image;
+    clip-path: circle(100% at 100% 50%);
+	background-position: center center;
+	background-size: cover;
+	transition: background-image 0.2s;
+}
+.placeholder {
+    clip-path: circle(100% at 100% 50%);
+	grid-area: image;
+	background-image: url('/images/placeholder.png');
+    background-position: 85% 80%;
+	background-size: cover;
+}
