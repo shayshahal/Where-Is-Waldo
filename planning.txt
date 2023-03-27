@@ -1,26 +1,26 @@
 ----------------app----------------------------------------------
 props: none
-state: none
+state: isGameActive
 
-------------------------Game--------------------- route
+------------------------Home--------------------- route
 props: none
-state: gameState, time, found
+state: gameActive
 
-----------------GameMap--------------------
-props: onFound
-state: position
+----------------Game--------------------
+props: onFound, image, time, found
+state: tags
 
 -----------score--------------
 props: time, found, toBeFound
 state: none
 
 -----------Tag-------------
-props: coordinate
+props: coordinate, character
 state: name
 
 ----------------nav-----------------------------
-props: none
-state: isShowing
+props: isGameActive
+state: none
 
 ----------------leaderboards------------------- route
 props: none
