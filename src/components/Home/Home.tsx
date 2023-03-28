@@ -12,13 +12,13 @@ function Home() {
 		setGameChoice(e.currentTarget.id as gameChoice);
 	}
 
-	let description: string = 'An interactive Where is Waldo game based on the anime One Piece! ';
+	let description: string =
+		'An interactive Where is Waldo game based on the anime One Piece! ';
 	if (gameChoice === 'official') {
 		description =
-			"The Official Art from the One Piece and Where' waldo collab";
+			"Official art from the One Piece and Where' waldo collab.";
 	} else if (gameChoice === 'fanmade') {
-		description =
-			'A fan made art made by @JesseMartin featuring One Piece characters, youtubers and 5 pandamans';
+		description = 'A fan made art made by @JesseMartin.';
 	}
 
 	return (
@@ -62,7 +62,9 @@ function Home() {
 						backgroundImage: 'url(/images/' + gameChoice + '.png)',
 					}}
 				></div>
-			) : <div className={styles.placeholder}></div>}
+			) : (
+				<div className={styles.placeholder}></div>
+			)}
 		</div>
 	);
 }
