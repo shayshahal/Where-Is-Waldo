@@ -7,8 +7,7 @@ function Nav() {
 		<nav className={styles.Nav}>
 			<NavLink className={styles.navLink} to='/'>Home</NavLink>
 			<NavLink className={styles.navLink} to='/Leaderboards'>Leaderboards</NavLink>
-			<NavLink className={styles.navLink} to='/Info'>Info</NavLink>
-		
+			<NavLink className={styles.navLink} to='/Info'>Info</NavLink>	
 		</nav>
 	);
 }
