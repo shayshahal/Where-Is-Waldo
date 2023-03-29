@@ -77,3 +77,7 @@ button,
 a {
 	cursor: pointer;
 }
+#root{
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
