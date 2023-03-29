@@ -1,4 +1,6 @@
 .Nav {
+	position: fixed;
+	width: 100%;
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 1fr auto auto;
@@ -7,6 +9,7 @@
 	font-size: 1.5rem;
 	background-color: black;
     color: white;
+	z-index: 99;
 }
 .navLink {
 	text-decoration: none;

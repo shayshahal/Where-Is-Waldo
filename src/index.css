@@ -11,7 +11,7 @@
   */
 * {
 	margin: 0;
-  padding: 0;
+	padding: 0;
 }
 /*
     3. Allow percentage-based heights in the application
@@ -20,9 +20,9 @@ html,
 body,
 #root {
 	height: 100%;
-  width: 100%;
-  max-width: 100%;
-  max-height: 100%;
+	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
 /*
     Typographic tweaks!
@@ -76,9 +76,4 @@ h6 {
 button,
 a {
 	cursor: pointer;
-}
-
-#root{
-  display: grid;
-  grid-template-rows: auto 1fr;
 }

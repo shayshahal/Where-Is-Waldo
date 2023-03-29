@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Game from './Game/Game';
 import Score from './Game/Score/Score';
 import styles from './Home.module.css';
@@ -7,9 +8,13 @@ type gameChoice = 'official' | 'fanmade' | '';
 
 function Home() {
 	const [gameChoice, setGameChoice] = useState<gameChoice>('');
-
-	function handleClick(e: React.MouseEvent<HTMLInputElement>) {
+	function handleChoiceClick(e: React.MouseEvent<HTMLInputElement>) {
 		setGameChoice(e.currentTarget.id as gameChoice);
+	}
+
+	const navigate = useNavigate();
+	function handlePlayClick(e: React.MouseEvent<HTMLButtonElement>) {
+		navigate('/:' + gameChoice);
 	}
 
 	let description: string =
@@ -23,48 +28,55 @@ function Home() {
 
 	return (
 		<div className={styles.Home}>
-			<h1 className={styles.title}>Where Is Wally?</h1>
-			<h2 className={styles.edition}>One Piece Edition!</h2>
-			<p className={styles.description}>{description}</p>
-			<div className={styles.buttons}>
-				<input
-					type='radio'
-					name='choice'
-					id='official'
-					onClick={handleClick}
-					className={styles.radio}
-				/>
-				<label
-					htmlFor='official'
-					className={styles.radioLabel}
+			<div className={styles.container}>
+				<h1 className={styles.title}>Where Is Wally?</h1>
+				<h2 className={styles.edition}>One Piece Edition!</h2>
+				<p className={styles.description}>{description}</p>
+				<div className={styles.buttons}>
+					<label
+						htmlFor='official'
+						className={styles.radioLabel}
+					>
+						<input
+							type='radio'
+							name='choice'
+							id='official'
+							onClick={handleChoiceClick}
+							className={styles.radio}
+						/>
+						Official
+					</label>
+					<label
+						htmlFor='fanmade'
+						className={styles.radioLabel}
+					>
+						<input
+							type='radio'
+							name='choice'
+							id='fanmade'
+							onClick={handleChoiceClick}
+							className={styles.radio}
+						/>
+						Fanmade
+					</label>
+					<button
+					className={styles.button}
+					disabled={gameChoice === ''}
+					onClick={handlePlayClick}
 				>
-					Official
-				</label>
-				<input
-					type='radio'
-					name='choice'
-					id='fanmade'
-					onClick={handleClick}
-					className={styles.radio}
-				/>
-				<label
-					htmlFor='fanmade'
-					className={styles.radioLabel}
-				>
-					Fanmade
-				</label>
-				<button className={styles.button}>Play</button>
+					Play
+				</button>
+				</div>
+
 			</div>
-			{gameChoice !== '' ? (
-				<div
-					className={styles.imageContainer}
-					style={{
-						backgroundImage: 'url(/images/' + gameChoice + '.png)',
-					}}
-				></div>
-			) : (
-				<div className={styles.placeholder}></div>
-			)}
+			<div className={styles.imageContainer}>
+				<img
+					src={`/images/${
+						gameChoice !== '' ? gameChoice : 'placeholder'
+					}.png`}
+					alt=''
+				/>
+			</div>
 		</div>
 	);
 }
