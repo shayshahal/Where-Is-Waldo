@@ -1,18 +1,21 @@
 import styles from './Tag.module.css';
 
 interface TagProps {
-	x: number;
-	y: number;
-	character: string;
+	position: Position;
 }
 
-function Tag({ x, y, character }: TagProps) {
+interface Position
+{
+	x: number;
+	y: number;
+}
+
+function Tag({ position}: TagProps) {
 	return (
 		<div
-			style={{ left: x + 'px', top: y + 'px' }}
+			style={{ left: position.x + 'px', top: position.y + 'px' }}
 			className={styles.Tag}
 		>
-			{character}
 		</div>
 	);
 }
