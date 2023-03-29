@@ -1,53 +1,64 @@
 import { useState } from 'react';
-import styles from './GameMap.module.css';
+import { useParams } from 'react-router-dom';
+import styles from './Game.module.css';
+import Score from './Score/Score';
 import Tag from './Tag/Tag';
 
-interface GameMapProps {
-	onFound: (fnc: (n: number) => number) => void;
-	difficulty: 'easy' | 'hard';
-}
-
-interface Tag {
+interface Position {
 	x: number;
 	y: number;
-	character: string;
 }
 
-interface Tags {
-	[key: string]: Tag;
-}
-
-function GameMap({ onFound, difficulty }: GameMapProps) {
-	const [tags, setTags] = useState<Tags>({});
-	function handleClick(e: React.MouseEvent<HTMLImageElement>) {
-		setTags({
-			...tags,
-			[e.pageX + '' + e.pageY]: {
-				x: e.pageX,
-				y: e.pageY,
-				character: 'Pandaman',
-			} as Tag,
-		});
+function Game() {
+	const { gameType } = useParams();
+	const [time, setTime] = useState(0);
+	const [timer, setTimer] = useState<number | undefined>(undefined);
+	if (timer === undefined) {
+		setTimer(
+			window.setInterval(() => {
+				setTime((prev) => prev + 1);
+			}, 1000)
+		);
 	}
 
+	const [tag, setTag] = useState<Position>();
+	function handleClick(e: React.MouseEvent<HTMLImageElement>) {
+		if (!tag) {
+			const rect = e.currentTarget.getBoundingClientRect();
+			console.log(
+				e.clientX,
+				e.clientY,
+				rect.left,
+				rect.top,
+				rect.width,
+				rect.height,
+				((e.clientY - rect.top) / rect.height) * 100
+			);
+			setTag({
+				x: (e.clientX - rect.left),
+				y: (e.clientY - rect.top),
+			});
+		} else setTag(undefined);
+	}
+
+	const [found, setFound] = useState(0);
+
 	return (
-		<div className={styles.GameMap}>
+		<div className={styles.Game}>
 			<img
-				className={styles.img}
-				alt='gameMap'
+				src={`/images/${gameType?.slice(1)}.png`}
+				alt='game image'
 				onClick={handleClick}
-				src='/src/assets/img.jpg'
-			></img>
-			{Object.entries(tags).map(([key, tag]) => (
-				<Tag
-					key={key}
-					x={tag.x}
-					y={tag.y}
-					character={tag.character}
-				/>
-			))}
+				className={styles.img}
+			/>
+			<Score
+				time={time}
+				found={found}
+				toBeFound={5}
+			/>
+			{tag && <Tag position={tag} />}
 		</div>
 	);
 }
 
-export default GameMap;
+export default Game;
