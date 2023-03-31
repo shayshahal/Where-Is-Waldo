@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Game from './components/Home/Home';
+import Game from './components/Home/Game/Game';
+import Home from './components/Home/Home';
 import Info from './components/Info/Info';
 import Leaderboards from './components/Leaderboards/Leaderboards';
 import Nav from './components/Nav/Nav';
+
 function App() {
 	return (
 		<BrowserRouter>
@@ -10,6 +12,10 @@ function App() {
 			<Routes>
 				<Route
 					path='/'
+					element={<Home />}
+				/>
+				<Route
+					path='/:gameType'
 					element={<Game />}
 				/>
 				<Route
