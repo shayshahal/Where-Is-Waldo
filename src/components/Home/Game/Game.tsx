@@ -15,14 +15,15 @@ interface Pandaman {
 	found: boolean;
 }
 type Status = 'success' | 'failure' | 'idle';
+type GameType = 'official' | 'fanmade' | undefined;
 
 function Game() {
-	const { gameType } = useParams();
-	const originalWidth = gameType?.includes('fanmade') ? 2048 : 1840;
-	const originalHeight = gameType?.includes('fanmade') ? 2048 : 1300;
+	const gameType: GameType = useParams().gameType?.slice(1) as GameType;
+	const originalWidth = gameType === 'fanmade' ? 2048 : 1840;
+	const originalHeight = gameType === 'fanmade' ? 2048 : 1300;
 
 	useEffect(() => {
-		getDocs(collection(firestore, (gameType as string).slice(1))).then(
+		getDocs(collection(firestore, gameType as string)).then(
 			(querySnapshot) => {
 				setPandamans(
 					querySnapshot.docs.map((doc) => {
@@ -31,7 +32,7 @@ function Game() {
 							found: false,
 						};
 					})
-				)
+				);
 			}
 		);
 	}, []);
@@ -54,7 +55,7 @@ function Game() {
 	}
 
 	const [tag, setTag] = useState<Position>();
-	const [tagStatus, setTagStatus] = useState<Status>('idle')
+	const [tagStatus, setTagStatus] = useState<Status>('idle');
 
 	function checkFound(x: number, y: number) {
 		const i = pandamans.findIndex(
@@ -87,20 +88,18 @@ function Game() {
 					after[ind].found = true;
 					return after;
 				});
-				setTagStatus('success')
-			}
-			else
-				setTagStatus('failure')
-		} else{
-			setTag(undefined)
-			setTagStatus('idle')
-		};
+				setTagStatus('success');
+			} else setTagStatus('failure');
+		} else {
+			setTag(undefined);
+			setTagStatus('idle');
+		}
 	}
 
 	return (
 		<div className={styles.Game}>
 			<img
-				src={`/images/${gameType?.slice(1)}.png`}
+				src={`/images/${gameType}.png`}
 				alt='game image'
 				onClick={handleClick}
 				className={styles.img}
@@ -111,8 +110,18 @@ function Game() {
 				toBeFound={pandamans.length}
 				status={tagStatus}
 			/>
-			{tag && <Tag position={tag} status={tagStatus}/>}
-			{isGameFinished && <Finish time={time} />}
+			{tag && (
+				<Tag
+					position={tag}
+					status={tagStatus}
+				/>
+			)}
+			{isGameFinished && (
+				<Finish
+					time={time}
+					gameType={gameType}
+				/>
+			)}
 		</div>
 	);
 }
