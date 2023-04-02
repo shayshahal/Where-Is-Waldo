@@ -16,8 +16,8 @@ interface Pandaman {
 
 function Game() {
 	const { gameType } = useParams();
-	const originalWidth = gameType === 'fanmade' ? 2048 : 1840;
-	const originalHeight = gameType === 'fanmade' ? 2048 : 1300;
+	const originalWidth = gameType?.includes('fanmade') ? 2048 : 1840;
+	const originalHeight = gameType?.includes('fanmade') ? 2048 : 1300;
 
 	useEffect(() => {
 		getDocs(collection(firestore, (gameType as string).slice(1))).then(
