@@ -1,7 +1,8 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { firestore } from '../../../main';
+import Finish from './Finish/Finish';
 import styles from './Game.module.css';
 import Score from './Score/Score';
 import Tag from './Tag/Tag';
@@ -29,11 +30,13 @@ function Game() {
 							found: false,
 						};
 					})
-				);
+				)
 			}
 		);
 	}, []);
 	const [pandamans, setPandamans] = useState<Pandaman[]>([]);
+	const found = pandamans.reduce((res, p) => (p.found ? res + 1 : res), 0);
+	const isGameFinished = found === pandamans.length && pandamans.length !== 0;
 
 	const [time, setTime] = useState(0);
 	const [timer, setTimer] = useState<number | undefined>(undefined);
@@ -43,19 +46,23 @@ function Game() {
 				setTime((prev) => prev + 1);
 			}, 1000)
 		);
+	} else {
+		if (isGameFinished) {
+			window.clearInterval(timer);
+		}
 	}
 
 	const [tag, setTag] = useState<Position>();
 	function checkFound(x: number, y: number) {
 		const i = pandamans.findIndex(
 			(pandaman) =>
+				// Tag box size is 75px
 				pandaman.position.x >= x - 37.5 &&
 				pandaman.position.x <= x + 37.5 &&
 				pandaman.position.y >= y - 37.5 &&
 				pandaman.position.y <= y + 37.5 &&
 				pandaman.found !== true
 		);
-		console.log(x, y);
 		return i;
 	}
 	async function handleClick(e: React.MouseEvent<HTMLImageElement>) {
@@ -72,7 +79,6 @@ function Game() {
 				((e.clientY - rect.top) / rect.height) * originalHeight
 			);
 			if (ind !== -1) {
-				setFound((prev) => prev + 1);
 				setPandamans((prev) => {
 					let after = [...prev];
 					after[ind].found = true;
@@ -81,7 +87,6 @@ function Game() {
 			}
 		} else setTag(undefined);
 	}
-	const [found, setFound] = useState(0);
 
 	return (
 		<div className={styles.Game}>
@@ -94,9 +99,10 @@ function Game() {
 			<Score
 				time={time}
 				found={found}
-				toBeFound={5}
+				toBeFound={pandamans.length}
 			/>
 			{tag && <Tag position={tag} />}
+			{isGameFinished && <Finish time={time} />}
 		</div>
 	);
 }
