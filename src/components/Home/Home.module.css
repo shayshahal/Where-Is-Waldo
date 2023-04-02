@@ -2,12 +2,12 @@
 	display: flex;
 	height: 100%;
 	width: 100%;
-	overflow:hidden;
+	overflow: hidden;
 }
 .container {
 	display: grid;
-	grid-template-rows: min-content min-content auto min-content;
-	padding: 3em 1em;
+	grid-template-rows: min-content min-content min-content auto min-content;
+	padding: 1em 1em 0.5em 1em;
 	height: 100%;
 }
 .title {
@@ -20,7 +20,7 @@
 	font-size: 2rem;
 }
 .buttons {
-	align-self: start;
+	align-self: center;
 	display: flex;
 	gap: 1em;
 	justify-content: space-evenly;
@@ -43,6 +43,18 @@
 	background-color: transparent;
 	justify-self: end;
 	padding: 0.5em 7em;
+}
+.credit {
+	font-size: 1.5rem;
+	align-self: end;
+	padding-left: 0.5em;
+	padding-top: 0.5em;
+}
+.credit a img {
+	display: inline-block;
+	object-fit: contain;
+	height: 40%;
+	padding-right: 0.25em;
 }
 .imageContainer {
 	clip-path: polygon(0% 0, 80% 0, 100% 100%, 20% 100%);

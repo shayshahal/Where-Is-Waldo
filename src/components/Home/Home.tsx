@@ -60,14 +60,25 @@ function Home() {
 						Fanmade
 					</label>
 					<button
-					className={styles.button}
-					disabled={gameChoice === ''}
-					onClick={handlePlayClick}
-				>
-					Play
-				</button>
+						className={styles.button}
+						disabled={gameChoice === ''}
+						onClick={handlePlayClick}
+					>
+						Play
+					</button>
 				</div>
-
+				<div className={styles.credit}>
+					<a
+						href='https://github.com/shayshahal'
+						target='_blank'
+					>
+						<img
+							src='/images/github.svg'
+							alt='github-logo'
+						/>
+					</a>
+					<span>Made by Shay Shahal</span>
+				</div>
 			</div>
 			<div className={styles.imageContainer}>
 				<img
