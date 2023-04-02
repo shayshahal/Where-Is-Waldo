@@ -25,7 +25,7 @@ function Finish({ time, gameType }: propTypes) {
 		try {
 			addToLeaderboards(name);
 			errorMessage = '';
-			navigate('/leaderboards');
+			navigate('/leaderboards', {state: gameType});
 		} catch {
 			errorMessage = "Couldn't add to leaderboards";
 		}
