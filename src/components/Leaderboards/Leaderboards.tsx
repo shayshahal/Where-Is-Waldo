@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { firestore } from '../../main';
@@ -18,7 +18,13 @@ function Leaderboards() {
 	useEffect(() => {
 		async function getCurrentLeaderBoard() {
 			const querySnapshot = await getDocs(
-				collection(firestore, currentLeaderBoardType + '-leaderboards')
+				query(
+					collection(
+						firestore,
+						currentLeaderBoardType + '-leaderboards'
+					),
+					orderBy('time')
+				)
 			);
 			setCurrentLeaderBoard(
 				querySnapshot.docs.map((doc) => {
@@ -39,7 +45,7 @@ function Leaderboards() {
 		<div className={styles.Leaderboards}>
 			<div className={styles.head}>
 				<button
-					className={styles.leftButton}
+					className={styles.buttons}
 					style={{
 						visibility:
 							currentLeaderBoardType === 'fanmade'
@@ -54,7 +60,7 @@ function Leaderboards() {
 				</button>
 				<h1 className={styles.title}>{currentLeaderBoardType}</h1>
 				<button
-					className={styles.rightButton}
+					className={styles.buttons}
 					style={{
 						visibility:
 							currentLeaderBoardType === 'official'
@@ -71,15 +77,17 @@ function Leaderboards() {
 			<table className={styles.table}>
 				<thead>
 					<tr>
+						<th></th>
 						<th>Name</th>
 						<th>Time</th>
 					</tr>
 				</thead>
 				<tbody>
-					{currentLeaderBoard.map((x) => (
+					{currentLeaderBoard.map((x, i) => (
 						<tr>
-							<th>{x.name}</th>
-							<th>{toHHMMSS(x.time)}</th>
+							<td>{i + 1}</td>
+							<td>{x.name}</td>
+							<td>{toHHMMSS(x.time)}</td>
 						</tr>
 					))}
 				</tbody>
