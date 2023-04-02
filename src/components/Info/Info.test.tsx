@@ -1,1 +1,0 @@
-import Info from './Info'
