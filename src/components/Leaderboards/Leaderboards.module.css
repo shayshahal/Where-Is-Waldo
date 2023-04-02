@@ -1,0 +1,31 @@
+.Leaderboards{
+    display: grid;
+    grid-template-rows: min-content auto;
+}
+.head{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: min-content 1fr min-content;
+    gap: 3em;
+    padding: 1em;
+}
+.title{
+    text-align: center;
+    font-size: 5rem;
+}
+.buttons{
+    font-size: 5rem;
+    background-color: transparent;
+    border: none;
+}
+.table{
+    justify-self: center;
+    align-self: start;
+    border-collapse: collapse;
+    border: 3px solid black;
+}
+.table td,.table th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 1em 1em 1em .25em;
+}
