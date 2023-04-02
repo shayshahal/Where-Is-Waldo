@@ -10,8 +10,8 @@
 	background-color: black;
 	padding: 0.5em;
 	opacity: 70%;
-	z-index: 2;
 	border: 1px solid white;
 	border-top-left-radius: 2rem;
 	border-top-right-radius: 2rem;
+	user-select: none;
 }

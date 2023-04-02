@@ -14,6 +14,7 @@ interface Pandaman {
 	position: Position;
 	found: boolean;
 }
+type Status = 'success' | 'failure' | 'idle';
 
 function Game() {
 	const { gameType } = useParams();
@@ -53,6 +54,8 @@ function Game() {
 	}
 
 	const [tag, setTag] = useState<Position>();
+	const [tagStatus, setTagStatus] = useState<Status>('idle')
+
 	function checkFound(x: number, y: number) {
 		const i = pandamans.findIndex(
 			(pandaman) =>
@@ -84,8 +87,14 @@ function Game() {
 					after[ind].found = true;
 					return after;
 				});
+				setTagStatus('success')
 			}
-		} else setTag(undefined);
+			else
+				setTagStatus('failure')
+		} else{
+			setTag(undefined)
+			setTagStatus('idle')
+		};
 	}
 
 	return (
@@ -100,8 +109,9 @@ function Game() {
 				time={time}
 				found={found}
 				toBeFound={pandamans.length}
+				status={tagStatus}
 			/>
-			{tag && <Tag position={tag} />}
+			{tag && <Tag position={tag} status={tagStatus}/>}
 			{isGameFinished && <Finish time={time} />}
 		</div>
 	);
