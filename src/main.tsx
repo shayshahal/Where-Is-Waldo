@@ -22,11 +22,6 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 export const firestore = getFirestore(app);
-getDocs(collection(firestore, 'fanmade')).then((docSnap) => {
-	docSnap.forEach((doc) => {
-		console.log(doc.id, ' =>', doc.data());
-	});
-});
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
