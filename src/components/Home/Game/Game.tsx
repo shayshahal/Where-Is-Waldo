@@ -10,7 +10,7 @@ interface Position {
 	x: number;
 	y: number;
 }
-interface Pandaman {
+interface Character {
 	position: Position;
 	found: boolean;
 }
@@ -23,22 +23,22 @@ function Game() {
 	const originalHeight = gameType === 'fanmade' ? 2048 : 1300;
 
 	useEffect(() => {
-		getDocs(collection(firestore, gameType as string)).then(
-			(querySnapshot) => {
-				setPandamans(
-					querySnapshot.docs.map((doc) => {
-						return {
-							position: { x: doc.data().x, y: doc.data().y },
-							found: false,
-						};
-					})
-				);
-			}
-		);
+		async function getCharacters(){
+			const querySnapshot = await getDocs(collection(firestore, gameType as string));
+			setCharacters(
+				querySnapshot.docs.map((doc) => {
+					return {
+						position: { x: doc.data().x, y: doc.data().y },
+						found: false,
+					};
+				})
+			);
+		}
+		getCharacters()
 	}, []);
-	const [pandamans, setPandamans] = useState<Pandaman[]>([]);
-	const found = pandamans.reduce((res, p) => (p.found ? res + 1 : res), 0);
-	const isGameFinished = found === pandamans.length && pandamans.length !== 0;
+	const [characters, setCharacters] = useState<Character[]>([]);
+	const found = characters.reduce((res, p) => (p.found ? res + 1 : res), 0);
+	const isGameFinished = found === characters.length && characters.length !== 0;
 
 	const [time, setTime] = useState(0);
 	const [timer, setTimer] = useState<number | undefined>(undefined);
@@ -58,14 +58,14 @@ function Game() {
 	const [tagStatus, setTagStatus] = useState<Status>('idle');
 
 	function checkFound(x: number, y: number) {
-		const i = pandamans.findIndex(
-			(pandaman) =>
+		const i = characters.findIndex(
+			(character) =>
 				// Tag box size is 75px
-				pandaman.position.x >= x - 37.5 &&
-				pandaman.position.x <= x + 37.5 &&
-				pandaman.position.y >= y - 37.5 &&
-				pandaman.position.y <= y + 37.5 &&
-				pandaman.found !== true
+				character.position.x >= x - 37.5 &&
+				character.position.x <= x + 37.5 &&
+				character.position.y >= y - 37.5 &&
+				character.position.y <= y + 37.5 &&
+				character.found !== true
 		);
 		return i;
 	}
@@ -83,7 +83,7 @@ function Game() {
 				((e.clientY - rect.top) / rect.height) * originalHeight
 			);
 			if (ind !== -1) {
-				setPandamans((prev) => {
+				setCharacters((prev) => {
 					let after = [...prev];
 					after[ind].found = true;
 					return after;
@@ -107,7 +107,7 @@ function Game() {
 			<Score
 				time={time}
 				found={found}
-				toBeFound={pandamans.length}
+				toBeFound={characters.length}
 				status={tagStatus}
 			/>
 			{tag && (
