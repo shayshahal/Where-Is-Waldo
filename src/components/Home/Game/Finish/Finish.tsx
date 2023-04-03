@@ -23,7 +23,8 @@ function Finish({ time, gameType }: propTypes) {
 		console.log('hi')
 		const name = (e.target as HTMLFormElement).input.value;
 		try {
-			addToLeaderboards(name);
+			if(name)
+				addToLeaderboards(name);
 			errorMessage = '';
 			navigate('/leaderboards', {state: gameType});
 		} catch {
