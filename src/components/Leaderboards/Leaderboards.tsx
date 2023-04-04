@@ -56,7 +56,7 @@ function Leaderboards() {
 						setCurrentLeaderBoardType('official');
 					}}
 				>
-					⇐
+					❮
 				</button>
 				<h1 className={styles.title}>{currentLeaderBoardType}</h1>
 				<button
@@ -71,7 +71,7 @@ function Leaderboards() {
 						setCurrentLeaderBoardType('fanmade');
 					}}
 				>
-					⇒
+					❯
 				</button>
 			</div>
 			<table className={styles.table}>

@@ -1,31 +1,42 @@
-.Leaderboards{
-    display: grid;
-    grid-template-rows: min-content auto;
+.Leaderboards {
+	display: grid;
+	grid-template-rows: min-content auto;
 }
-.head{
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: min-content 1fr min-content;
-    gap: 3em;
-    padding: 1em;
+.head {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: min-content 1fr min-content;
+	gap: 3em;
+	padding: 1em 3em;
 }
-.title{
-    text-align: center;
-    font-size: 5rem;
+.title {
+	text-align: center;
+	font-size: 5rem;
 }
-.buttons{
-    font-size: 5rem;
-    background-color: transparent;
-    border: none;
+.buttons {
+	font-size: 5rem;
+	background-color: transparent;
+	border: none;
 }
-.table{
-    justify-self: center;
-    align-self: start;
-    border-collapse: collapse;
-    border: 3px solid black;
+.table {
+	justify-self: center;
+	align-self: start;
+	border-collapse: collapse;
+	border-radius: 1rem;
+	width: 50%;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
-.table td,.table th {
-    border: 1px solid black;
-    text-align: left;
-    padding: 1em 1em 1em .25em;
+.table th {
+	background-color: var(--font);
+	color: var(--bg);
+	padding: 0.5em 1em 0.5em 0.25em;
+	font-size: 1.5rem;
+}
+.table td {
+	text-align: center;
+	padding: 1em 1em 1em 0.25em;
+	font-size: 1.25rem;
+}
+.table tr:nth-child(odd) {
+	background-color: rgb(231, 231, 231);
 }
