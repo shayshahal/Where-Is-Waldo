@@ -21,8 +21,8 @@ body,
 #root {
 	height: 100%;
 	width: 100%;
-	max-width: 100%;
-	max-height: 100%;
+	color: var(--font);
+	background-color: var(--bg);
 }
 /*
     Typographic tweaks!
@@ -77,7 +77,13 @@ button,
 a {
 	cursor: pointer;
 }
-#root{
-  display: grid;
-  grid-template-rows: auto 1fr;
+#root {
+	display: grid;
+	grid-template-rows: auto 1fr;
+}
+:root {
+	--lShade: white  ;
+	--dShade: black ;
+	--bg: var(--lShade);
+	--font: var(--dShade);
 }

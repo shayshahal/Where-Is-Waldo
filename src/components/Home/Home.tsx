@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Game from './Game/Game';
-import Score from './Game/Score/Score';
 import styles from './Home.module.css';
 
 type gameChoice = 'official' | 'fanmade' | '';
@@ -18,7 +16,7 @@ function Home() {
 	}
 
 	let description: string =
-		'An interactive Where is Waldo game based on the anime One Piece! ';
+		'An interactive Where\'s Waldo game based on the One Piece! ';
 	if (gameChoice === 'official') {
 		description =
 			"Official art from the One Piece and Where' waldo collab.";
@@ -29,9 +27,8 @@ function Home() {
 	return (
 		<div className={styles.Home}>
 			<div className={styles.container}>
-				<h1 className={styles.title}>Where Is Wally?</h1>
+				<h1 className={styles.title}>Where's Wally?</h1>
 				<h2 className={styles.edition}>One Piece Edition!</h2>
-				<p className={styles.description}>{description}</p>
 				<div className={styles.buttons}>
 					<label
 						htmlFor='official'
@@ -59,12 +56,15 @@ function Home() {
 						/>
 						Fanmade
 					</label>
+				</div>
+				<div className={styles.playContainer}>
+					<span className={styles.description}>{description}</span>
 					<button
 						className={styles.button}
 						disabled={gameChoice === ''}
 						onClick={handlePlayClick}
 					>
-						Play
+						Play ➔
 					</button>
 				</div>
 				<div className={styles.credit}>

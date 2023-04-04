@@ -1,12 +1,13 @@
 .Home {
 	display: flex;
+	flex-wrap: wrap-reverse;
 	height: 100%;
-	width: 100%;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 .container {
+	flex: 1;
 	display: grid;
-	grid-template-rows: min-content min-content min-content auto min-content;
+	grid-template-rows: min-content min-content auto min-content min-content ;
 	padding: 1em 1em 0.5em 1em;
 	height: 100%;
 }
@@ -16,13 +17,10 @@
 .edition {
 	font-size: 5rem;
 }
-.description {
-	font-size: 2rem;
-}
+
 .buttons {
 	align-self: center;
 	display: flex;
-	gap: 1em;
 	justify-content: space-evenly;
 }
 .radio {
@@ -30,19 +28,47 @@
 }
 .radioLabel {
 	cursor: pointer;
-	background-color: black;
+	border: 2px solid currentColor;
+	background-color: transparent;
 	border-radius: 1rem;
-	color: white;
 	font-size: 2rem;
-	padding: 1em;
+	padding: 2em;
+	transition: transform .2s ease;
+}
+.radioLabel:has(.radio:checked){
+	color: var(--bg);
+	background-color: var(--font);
+	transform: scale(1.1);
+}
+.playContainer{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+.description {
+	font-size: 2rem;
 }
 .button {
 	font-size: 2rem;
-	border: 1px solid black;
+	display: inline-block;
 	border-radius: 2rem;
-	background-color: transparent;
-	justify-self: end;
-	padding: 0.5em 7em;
+	border: 1px solid black;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	background-color: var(--bg);
+	color: inherit;
+	padding: 0.5em 1em;
+	opacity: 1;
+	transform: scale(1);
+	transition: opacity .2s ease, transform .2s ease;
+}
+.button:hover, .button:focus{
+	background-color: var(--font);
+	color: var(--bg);
+}
+.button:disabled{
+	opacity: 0;
+	transform: scale(0);
 }
 .credit {
 	font-size: 1.5rem;
@@ -57,12 +83,22 @@
 	padding-right: 0.25em;
 }
 .imageContainer {
+	flex: 1;
 	clip-path: polygon(0% 0, 80% 0, 100% 100%, 20% 100%);
 	height: 100%;
 	width: 100%;
+
 }
 .imageContainer img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
+}
+@media (max-width: 768px) {
+	.imageContainer{
+		clip-path: polygon(0 100%, 100% 75%, 100% 0, 0 25%);
+		height: 50%;
+		width: 100%;
+	}
+
 }
