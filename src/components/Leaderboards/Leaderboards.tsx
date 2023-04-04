@@ -78,7 +78,7 @@ function Leaderboards() {
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Namee</th>
+						<th>Name</th>
 						<th>Time</th>
 					</tr>
 				</thead>
