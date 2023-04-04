@@ -9,9 +9,8 @@
 	color: white;
 	background-color: black;
 	padding: 0.5em;
-	opacity: 70%;
 	border: 1px solid white;
-	border-top-left-radius: 2rem;
-	border-top-right-radius: 2rem;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
 	user-select: none;
 }
