@@ -84,7 +84,7 @@ function Leaderboards() {
 				</thead>
 				<tbody>
 					{currentLeaderBoard.map((x, i) => (
-						<tr>
+						<tr id={'' + i}>
 							<td>{i + 1}</td>
 							<td>{x.name}</td>
 							<td>{toHHMMSS(x.time)}</td>
