@@ -39,15 +39,15 @@ function Finish({ time, gameType }: propTypes) {
 				className={styles.form}
 			>
 				<h1 className={styles.title}>Congratulations!</h1>
-				<h3 className={styles.time}>
-					You finished in {toHHMMSS(time)}
-				</h3>
+				<div className={styles.info}>
+					Your time is <div className={styles.time}>{toHHMMSS(time)}</div>
+				</div>
 				<div className={styles.inputContainer}>
 					<label
 						htmlFor='input'
 						className={styles.label}
 					>
-						Enter your name here:
+						Enter your name here:<br/>
 					</label>
 					<input
 						type='text'
@@ -56,8 +56,8 @@ function Finish({ time, gameType }: propTypes) {
 						className={styles.input}
 					></input>
 				</div>
-				<button className={styles.button}>To Leaderboards</button>
-				<div>{errorMessage}</div>
+				<button className={styles.button}>To Leaderboards ➔</button>
+				{errorMessage!==''&&<div>{errorMessage}</div>}
 			</form>
 		</div>
 	);

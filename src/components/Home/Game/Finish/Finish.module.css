@@ -1,21 +1,57 @@
-.Finish{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 98;
-    left: 0;
-    top: 0;
-    display: grid;
-    place-content: center;
-    backdrop-filter: brightness(50%);
+.Finish {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 98;
+	left: 0;
+	top: 0;
+	display: grid;
+	place-content: center;
+	backdrop-filter: brightness(50%);
 }
-.form{
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1em;
-    padding: 1em;
-    background-color: white;
+.form {
+	border: 5px solid currentColor;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+	border-radius: 1rem;
+	font-size: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	gap: 2em;
+	padding: 2em;
+	background-color: var(--bg);
+}
+.title {
+	font-size: 4rem;
+}
+.info {
+	font-size: 2rem;
+}
+.time {
+	font-size: 5rem;
+}
+.inputContainer{
+    width: 100%;
+}
+.input {
+    border: 2px solid currentColor;
+    border-radius: 1rem;
+    text-align: center;
+    padding: .5em 0em;
+}
+.button {
+	border: 1px solid currentColor;
+	border-radius: 1rem;
+	color: inherit;
+	background-color: var(--bg);
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	padding: 0.5em 1em;
+}
+.button:hover,
+.button:focus {
+	background-color: var(--font);
+	color: var(--bg);
 }
